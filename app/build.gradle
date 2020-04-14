@@ -55,4 +55,21 @@ dependencies {
     /* Android tests*/
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    /* RXJava */
+    implementation "io.reactivex.rxjava2:rxjava:2.2.0"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+
+    /* Dagger */
+    implementation "com.google.dagger:dagger:${dagger_version}"
+    implementation "com.google.dagger:dagger-android:${dagger_version}"
+    implementation "com.google.dagger:dagger-android-support:${dagger_version}"
+    kapt "com.google.dagger:dagger-compiler:${dagger_version}"
+    kaptTest "com.google.dagger:dagger-compiler:${dagger_version}"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:${dagger_version}"
+    kapt "com.google.dagger:dagger-android-processor:${dagger_version}"
+    kaptTest "com.google.dagger:dagger-android-processor:${dagger_version}"
+    kaptAndroidTest "com.google.dagger:dagger-android-processor:${dagger_version}"
+    compileOnly "org.glassfish:javax.annotation:10.0-b28"
+    kaptTest "org.glassfish:javax.annotation:10.0-b28"
 }
