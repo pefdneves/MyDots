@@ -51,6 +51,7 @@ dependencies {
 
     /* Unit tests*/
     testImplementation 'junit:junit:4.12'
+    testImplementation 'io.mockk:mockk:1.9.3.kotlin12'
 
     /* Android tests*/
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
