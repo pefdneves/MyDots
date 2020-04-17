@@ -1,6 +1,8 @@
 package com.pefdneves.mydots.inject
 
 import com.pefdneves.mydots.application.MyDotsApplication
+import com.pefdneves.mydots.utils.BluetoothUtils
+import com.pefdneves.mydots.utils.BluetoothUtilsImpl
 import com.pefdneves.mydots.utils.RxSchedulers
 import dagger.Module
 import dagger.Provides
@@ -21,6 +23,11 @@ class AppModule {
             network = Schedulers.io(),
             main = AndroidSchedulers.mainThread()
         )
+    }
+
+    @Provides
+    fun provideBluetoothUtils(): BluetoothUtils {
+        return BluetoothUtilsImpl()
     }
 
 }
