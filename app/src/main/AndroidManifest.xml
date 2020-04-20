@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pefdneves.mydots">
 
+    <uses-permission android:name="android.permission.BLUETOOTH" />
     <application
         android:name=".application.MyDotsApplication"
         android:allowBackup="true"
