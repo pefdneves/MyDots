@@ -1,6 +1,6 @@
 package com.pefdneves.mydots.domain.usecase
 
-import com.pefdneves.mydots.domain.UseCaseCallback
+import com.pefdneves.mydots.domain.usecase.base.UseCaseCallback
 import com.pefdneves.mydots.domain.repository.DotDeviceRepositoryImpl
 import com.pefdneves.mydots.model.DotBluetoothDevice
 import com.pefdneves.mydots.utils.RxSchedulers

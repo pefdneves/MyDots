@@ -1,4 +1,4 @@
-package com.pefdneves.mydots.domain
+package com.pefdneves.mydots.domain.usecase.base
 
 import com.pefdneves.mydots.utils.RxSchedulers
 import io.reactivex.Observable

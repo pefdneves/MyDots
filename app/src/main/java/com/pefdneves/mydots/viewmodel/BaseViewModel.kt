@@ -6,7 +6,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
-import com.pefdneves.mydots.domain.BaseUseCaseInterface
+import com.pefdneves.mydots.domain.usecase.base.BaseUseCaseInterface
 
 open class BaseViewModel(private val useCase: BaseUseCaseInterface?) : ViewModel(), Observable,
     LifecycleObserver {

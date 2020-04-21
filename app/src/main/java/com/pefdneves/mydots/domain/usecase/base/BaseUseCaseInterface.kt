@@ -1,4 +1,4 @@
-package com.pefdneves.mydots.domain
+package com.pefdneves.mydots.domain.usecase.base
 
 interface BaseUseCaseInterface {
 
