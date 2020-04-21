@@ -13,7 +13,8 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         AppModule::class,
         BuildersModule::class,
-        RepositoryModule::class]
+        RepositoryModule::class,
+        UseCaseModule::class]
 )
 interface AppComponent : AndroidInjector<MyDotsApplication> {
 
