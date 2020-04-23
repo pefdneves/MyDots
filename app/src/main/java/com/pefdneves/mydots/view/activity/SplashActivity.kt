@@ -28,20 +28,21 @@ class SplashActivity : DaggerAppCompatActivity() {
     }
 
     private fun goToNextScreen() {
-        Handler().postDelayed({
-            val flagsForIntent = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-            if (sharedPreferencesRepository.getRegisteredModel() != null) {
-                startActivity(Intent(this, OverviewActivity::class.java).apply {
-                    flags = flagsForIntent
-                })
-            } /*else {
-                /TODO: Add screen
-                startActivity(Intent(this, ChooseDeviceActivity::class.java).apply {
-                    flags = flagsForIntent
-                })
-            }*/
-            overridePendingTransition(0, 0)
-        },
+        Handler().postDelayed(
+            {
+                val flagsForIntent =
+                    Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                if (sharedPreferencesRepository.getRegisteredModel() != null) {
+                    startActivity(Intent(this, OverviewActivity::class.java).apply {
+                        flags = flagsForIntent
+                    })
+                } else {
+                    startActivity(Intent(this, ChooseDeviceActivity::class.java).apply {
+                        flags = flagsForIntent
+                    })
+                }
+                overridePendingTransition(0, 0)
+            },
             DELAY_SPLASH_SCREEN_MILLISECONDS
         )
     }
