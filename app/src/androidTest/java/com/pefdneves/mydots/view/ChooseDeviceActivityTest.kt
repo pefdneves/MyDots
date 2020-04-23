@@ -1,4 +1,4 @@
-package com.pefdneves.mydots
+package com.pefdneves.mydots.view
 
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -9,6 +9,7 @@ import androidx.test.espresso.intent.matcher.IntentMatchers.hasComponent
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
+import com.pefdneves.mydots.R
 import com.pefdneves.mydots.view.activity.ChooseDeviceActivity
 import com.pefdneves.mydots.inject.TestSharedPreferencesRepositoryImpl
 import com.pefdneves.mydots.model.XiaomiSpeakerModel
