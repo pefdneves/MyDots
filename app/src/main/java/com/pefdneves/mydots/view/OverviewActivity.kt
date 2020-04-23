@@ -1,6 +1,7 @@
-package com.pefdneves.mydots
+package com.pefdneves.mydots.view
 
 import android.os.Bundle
+import com.pefdneves.mydots.R
 import dagger.android.AndroidInjection
 import dagger.android.support.DaggerAppCompatActivity
 
