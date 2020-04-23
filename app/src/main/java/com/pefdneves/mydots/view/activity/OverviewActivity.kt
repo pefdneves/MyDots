@@ -1,4 +1,4 @@
-package com.pefdneves.mydots.view
+package com.pefdneves.mydots.view.activity
 
 import android.os.Bundle
 import com.pefdneves.mydots.R

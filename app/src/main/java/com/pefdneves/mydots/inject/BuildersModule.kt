@@ -1,7 +1,7 @@
 package com.pefdneves.mydots.inject
 
-import com.pefdneves.mydots.view.OverviewActivity
-import com.pefdneves.mydots.view.SplashActivity
+import com.pefdneves.mydots.view.activity.OverviewActivity
+import com.pefdneves.mydots.view.activity.SplashActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

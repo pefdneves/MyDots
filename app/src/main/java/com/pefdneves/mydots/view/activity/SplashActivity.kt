@@ -1,4 +1,4 @@
-package com.pefdneves.mydots.view
+package com.pefdneves.mydots.view.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -41,7 +41,9 @@ class SplashActivity : DaggerAppCompatActivity() {
                 })
             }*/
             overridePendingTransition(0, 0)
-        }, DELAY_SPLASH_SCREEN_MILLISECONDS)
+        },
+            DELAY_SPLASH_SCREEN_MILLISECONDS
+        )
     }
 
     private fun startAnimation() {
