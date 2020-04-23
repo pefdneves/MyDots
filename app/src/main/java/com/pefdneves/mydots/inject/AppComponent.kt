@@ -14,6 +14,7 @@ import javax.inject.Singleton
         AppModule::class,
         BuildersModule::class,
         RepositoryModule::class,
+        ViewModelModule::class,
         UseCaseModule::class]
 )
 interface AppComponent : AndroidInjector<MyDotsApplication> {
