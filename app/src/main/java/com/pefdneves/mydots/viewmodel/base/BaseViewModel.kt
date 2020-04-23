@@ -1,4 +1,4 @@
-package com.pefdneves.mydots.viewmodel
+package com.pefdneves.mydots.viewmodel.base
 
 import androidx.databinding.Observable
 import androidx.databinding.PropertyChangeRegistry

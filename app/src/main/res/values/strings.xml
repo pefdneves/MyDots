@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">MyDots</string>
+
+    <string name="save">Save</string>
+
+    <string name="choose_your_device_title">Choose your device</string>
+    <string name="choose_your_device_choose_bluetooth_device_title">Choose the bluetooth name:</string>
 </resources>

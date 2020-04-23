@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="device_choose_device_width_height">300dp</dimen>
+
+    <dimen name="default_button_width">250dp</dimen>
+    <dimen name="default_button_height">40dp</dimen>
+
+</resources>

@@ -13,4 +13,26 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="DefaultSubtitle">
+        <item name="android:textSize">22sp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="DefaultText">
+        <item name="android:textSize">12sp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+
+    <style name="DefaultButton">
+        <item name="android:layout_width">@dimen/default_button_width</item>
+        <item name="android:layout_height">@dimen/default_button_height</item>
+        <item name="android:background">@drawable/round_button</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

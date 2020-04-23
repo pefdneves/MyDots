@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.pefdneves.mydots.viewmodel.ChooseDeviceViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.07" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_select_device_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.2" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <TextView
+            android:id="@+id/tv_title_choose_device"
+            style="@style/DefaultSubtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/choose_your_device_title"
+            app:layout_constraintBottom_toTopOf="@id/guideline_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/guideline_select_device_layout">
+
+            <ImageView
+                android:id="@+id/iv_device_choose_device"
+                deviceToImageResource="@{vm.selectedDevice}"
+                android:layout_width="@dimen/device_choose_device_width_height"
+                android:layout_height="@dimen/device_choose_device_width_height"
+                android:layout_centerHorizontal="true" />
+
+            <Spinner
+                android:id="@+id/spn_choose_device"
+                style="@style/DefaultText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_device_choose_device"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp"
+                android:textAlignment="center" />
+        </RelativeLayout>
+
+        <Button
+            android:id="@+id/btn_save_choose_device"
+            style="@style/DefaultButton"
+            android:text="@string/save"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
