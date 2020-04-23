@@ -35,4 +35,16 @@
         <item name="android:textSize">12sp</item>
     </style>
 
+    <style name="DefaultTitle">
+        <item name="android:textSize">32sp</item>
+        <item name="fontFamily">sans-serif-condensed</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="DefaultDetailText">
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">sans-serif</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>

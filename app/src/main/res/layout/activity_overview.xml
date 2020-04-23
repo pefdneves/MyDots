@@ -1,18 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.activity.OverviewActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <variable
+            name="vm"
+            type="com.pefdneves.mydots.viewmodel.OverviewViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.07" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_title_background"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.01" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_progress_circle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_details_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.77" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/defaultBlue"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_title_background"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_title_overview"
+            style="@style/DefaultTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{vm.model.model}"
+            app:layout_constraintBottom_toTopOf="@id/guideline_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:text="Xiaomi Wireless BL Speaker" />
+
+        <com.vaibhavlakhera.circularprogressview.CircularProgressView
+            android:id="@+id/pv_battery"
+            batteryLevelToProgressValue="@{vm.batteryInPercentage}"
+            deviceConnectedToFillColor="@{vm.deviceIsConnected}"
+            android:layout_width="@dimen/circular_progress_width_height"
+            android:layout_height="@dimen/circular_progress_width_height"
+            app:animate="true"
+            app:animateDuration="1200"
+            app:fillColor="@android:color/white"
+            app:layout_constraintBottom_toTopOf="@id/guideline_progress_circle"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_title"
+            app:progressColor="@android:color/white"
+            app:progressInterpolator="@android:anim/accelerate_decelerate_interpolator"
+            app:progressRoundCap="true"
+            app:progressTextColor="@android:color/white"
+            app:progressTextEnabled="true"
+            app:progressTextSize="32sp"
+            app:progressTextType="progress"
+            app:progressWidth="12dp"
+            app:startAngle="270"
+            app:totalColor="@color/defaultBlue"
+            app:totalValue="100"
+            app:totalWidth="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/details_layout_margin_left_right"
+            android:layout_marginRight="@dimen/details_layout_margin_left_right"
+            android:background="@drawable/round_corner_layout"
+            android:backgroundTint="@color/defaultBlue"
+            android:orientation="horizontal"
+            android:padding="15dp"
+            app:layout_constraintBottom_toTopOf="@id/guideline_details_layout"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_progress_circle">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="3"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/device_details_small_icons_width_height"
+                        android:layout_height="@dimen/device_details_small_icons_width_height"
+                        android:src="@drawable/bluetooth" />
+
+                    <TextView
+                        android:id="@+id/tv_device_name"
+                        style="@style/DefaultDetailText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/device_details_overview_margin_start_item"
+                        android:text="@{vm.name}"
+                        tools:text="Mi Bluetooth Ear R" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/device_details_overview_margin_top_item"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_battery_icon"
+                        batteryInPercentageToImageResource="@{vm.batteryInPercentage}"
+                        android:layout_width="@dimen/device_details_small_icons_width_height"
+                        android:layout_height="@dimen/device_details_small_icons_width_height"
+                        tools:src="@drawable/battery_full" />
+
+                    <TextView
+                        android:id="@+id/tv_battery_percentage"
+                        style="@style/DefaultDetailText"
+                        batteryInPercentageToText="@{vm.batteryInPercentage}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/device_details_overview_margin_start_item"
+                        tools:text="90% remaining" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/device_details_overview_margin_top_item"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="@dimen/device_details_small_icons_width_height"
+                        android:layout_height="@dimen/device_details_small_icons_width_height"
+                        android:src="@drawable/clock" />
+
+                    <TextView
+                        android:id="@+id/tv_battery_minutes"
+                        style="@style/DefaultDetailText"
+                        batteryInMinutesToText="@{vm.batteryInMinutes}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/device_details_overview_margin_start_item"
+                        tools:text="2 hours and 2 minutes" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/device_details_overview_margin_top_item"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_connected_toggle"
+                        deviceIsConnectedToImageResource="@{vm.deviceIsConnected}"
+                        android:layout_width="@dimen/device_details_small_icons_width_height"
+                        android:layout_height="@dimen/device_details_small_icons_width_height"
+                        tools:src="@drawable/toggle_on" />
+
+                    <TextView
+                        style="@style/DefaultDetailText"
+                        deviceIsConnectedToText="@{vm.deviceIsConnected}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/device_details_overview_margin_start_item"
+                        tools:text="Connected" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/iv_device_overview"
+                deviceToImageResource="@{vm.model}"
+                android:layout_width="@dimen/device_details_overview_width_height"
+                android:layout_height="@dimen/device_details_overview_width_height"
+                android:layout_gravity="center"
+                android:layout_weight="2"
+                tools:src="@drawable/airdots" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_change_device"
+            style="@style/DefaultButton"
+            android:text="@string/overview_change_device"
+            app:layout_constraintBottom_toBottomOf="@id/guideline_button"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

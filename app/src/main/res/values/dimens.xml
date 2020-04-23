@@ -6,4 +6,11 @@
     <dimen name="default_button_width">250dp</dimen>
     <dimen name="default_button_height">40dp</dimen>
 
+    <dimen name="circular_progress_width_height">300dp</dimen>
+    <dimen name="details_layout_margin_left_right">20dp</dimen>
+    <dimen name="device_details_overview_width_height">90dp</dimen>
+    <dimen name="device_details_small_icons_width_height">20sp</dimen>
+    <dimen name="device_details_overview_margin_top_item">5dp</dimen>
+    <dimen name="device_details_overview_margin_start_item">5dp</dimen>
+
 </resources>

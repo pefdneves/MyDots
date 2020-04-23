@@ -5,4 +5,14 @@
 
     <string name="choose_your_device_title">Choose your device</string>
     <string name="choose_your_device_choose_bluetooth_device_title">Choose the bluetooth name:</string>
+
+    <string name="overview_device_is_connected">Connected</string>
+    <string name="overview_device_is_not_connected">Disconnected</string>
+    <string name="overview_battery_in_time_hours_and_minutes">%1$d hours and %2$d minutes</string>
+    <string name="overview_battery_in_time_minutes">%1$d minutes</string>
+    <string name="overview_battery_in_time_hours">%1$d hours</string>
+    <string name="overview_battery_in_percentage">%1$d%% remaining</string>
+    <string name="overview_change_device">Change device</string>
+    <string name="overview_battery_level_unknown">Battery percentage unknown</string>
+    <string name="overview_battery_time_unknown">Battery time unknown</string>
 </resources>
