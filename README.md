@@ -1,6 +1,6 @@
 Keep track of your wireless earphones/speakers battery status (for Xiaomi devices)
 
-# MyDots *WORK IN PROGRESS*
+# MyDots
 Keep track of your wireless earphones/speakers battery status (for Xiaomi devices)
 
 ## Libraries used
