@@ -1,9 +1,12 @@
 package com.pefdneves.mydots.inject
 
+import android.content.Context
 import com.pefdneves.mydots.application.MyDotsApplication
 import com.pefdneves.mydots.utils.BluetoothUtils
 import com.pefdneves.mydots.utils.BluetoothUtilsImpl
 import com.pefdneves.mydots.utils.RxSchedulers
+import com.pefdneves.mydots.utils.notification.DotsNotificationManager
+import com.pefdneves.mydots.utils.notification.DotsNotificationManagerImpl
 import dagger.Module
 import dagger.Provides
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -28,6 +31,11 @@ class AppModule {
     @Provides
     fun provideBluetoothUtils(): BluetoothUtils {
         return BluetoothUtilsImpl()
+    }
+
+    @Provides
+    fun provideDotsNotificationManager(context : Context): DotsNotificationManager {
+        return DotsNotificationManagerImpl(context)
     }
 
 }
