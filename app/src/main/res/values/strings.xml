@@ -18,5 +18,6 @@
     <string name="overview_battery_level_unknown">Battery percentage unknown</string>
     <string name="overview_battery_time_unknown">Battery time unknown</string>
 
+    <string name="notification_device_battery">Battery level: %1$d%% (%2$s)</string>
     <string name="notification_loading">Loading…</string>
 </resources>
