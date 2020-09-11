@@ -12,4 +12,8 @@ interface BluetoothUtils {
     fun getBatteryLeftBasedOnModel(batteryLevel: Int, xiaomiSpeakerModel: XiaomiSpeakerModel): Int
 
     fun getBatteryLevelReflection(pairedDevice: BluetoothDevice?): Int
+
+    companion object {
+        const val DEFAULT_BATTERY_NOT_CONNECT = -1
+    }
 }

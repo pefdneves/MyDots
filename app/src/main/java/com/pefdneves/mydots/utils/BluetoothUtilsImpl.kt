@@ -49,7 +49,7 @@ class BluetoothUtilsImpl @Inject constructor() : BluetoothUtils {
     override fun getBatteryLevelReflection(pairedDevice: BluetoothDevice?): Int {
         return pairedDevice?.let { bluetoothDevice ->
             (bluetoothDevice.javaClass.getMethod("getBatteryLevel")).invoke(pairedDevice) as Int
-        } ?: -1
+        } ?: BluetoothUtils.DEFAULT_BATTERY_NOT_CONNECT
     }
 
     companion object {
