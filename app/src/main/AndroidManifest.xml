@@ -4,6 +4,8 @@
     package="com.pefdneves.mydots">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:name=".application.MyDotsApplication"
         android:allowBackup="true"
