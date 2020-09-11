@@ -12,8 +12,10 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         TestAppModule::class,
         BuildersModule::class,
+        BroadcastReceiverModule::class,
         UseCaseModule::class,
         TestRepositoryModule::class,
+        ServiceModule::class,
         ViewModelModule::class]
 )
 interface TestAppComponent : AppComponent {

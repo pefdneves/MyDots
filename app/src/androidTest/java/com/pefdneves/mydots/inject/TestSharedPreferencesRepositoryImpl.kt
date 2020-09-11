@@ -9,6 +9,15 @@ class TestSharedPreferencesRepositoryImpl @Inject constructor() : SharedPreferen
     private var address = "AA:00"
     private var model = XiaomiSpeakerModel.AIR_DOTS
     private var name = "Mi True Wireless EBs Basic_R"
+    private var isNotificationEnabled = false
+
+    override fun isNotificationEnabled(): Boolean {
+        return isNotificationEnabled
+    }
+
+    override fun setNotificationEnabled(isEnabled: Boolean) {
+        isNotificationEnabled = isEnabled
+    }
 
     override fun getRegisteredAddress(): String? {
         return address
