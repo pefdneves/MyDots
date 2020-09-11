@@ -4,6 +4,10 @@ import com.pefdneves.mydots.model.XiaomiSpeakerModel
 
 interface SharedPreferencesRepository {
 
+    fun isNotificationEnabled(): Boolean
+
+    fun setNotificationEnabled(isEnabled: Boolean)
+
     fun getRegisteredAddress(): String?
 
     fun getRegisteredModel(): XiaomiSpeakerModel?

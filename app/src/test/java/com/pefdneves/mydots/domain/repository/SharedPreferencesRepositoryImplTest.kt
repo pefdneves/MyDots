@@ -143,4 +143,41 @@ class SharedPreferencesRepositoryImplTest {
             mockSharedPreferencesEditor.apply()
         }
     }
+
+    @Test
+    fun test_isNotificationEnabled() {
+        val isEnabled = false
+        every { mockSharedPreferences.getBoolean("NOTIFICATION_ENABLED", true) } returns isEnabled
+
+        val result = testSubject.isNotificationEnabled()
+
+        verify(exactly = 1) {
+            mockContext.getSharedPreferences("SETTINGS", MODE_PRIVATE)
+            mockSharedPreferences.getBoolean("NOTIFICATION_ENABLED", true)
+        }
+        assertEquals(isEnabled, result)
+    }
+
+    @Test
+    fun test_setNotificationEnabled() {
+        val isEnabled = false
+        every {
+            mockSharedPreferencesEditor.putBoolean(
+                "NOTIFICATION_ENABLED",
+                isEnabled
+            )
+        } returns mockSharedPreferencesEditor
+        every { mockSharedPreferencesEditor.apply() } just runs
+
+        testSubject.setNotificationEnabled(isEnabled)
+
+        verify(exactly = 1) {
+            mockContext.getSharedPreferences("SETTINGS", MODE_PRIVATE)
+            mockSharedPreferencesEditor.putBoolean(
+                "NOTIFICATION_ENABLED",
+                isEnabled
+            )
+            mockSharedPreferencesEditor.apply()
+        }
+    }
 }
