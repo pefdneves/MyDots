@@ -9,6 +9,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import com.pefdneves.mydots.R
+import com.pefdneves.mydots.service.MyDotsService
 import com.pefdneves.mydots.view.activity.SplashActivity
 
 class DotsNotificationManagerImpl(private val context: Context) : DotsNotificationManager {
@@ -71,11 +72,11 @@ class DotsNotificationManagerImpl(private val context: Context) : DotsNotificati
     }
 
     override fun startNotificationService() {
-        //TODO: MyDotsService.startService(context)
+        MyDotsService.startService(context)
     }
 
     override fun stopNotificationService() {
-        //TODO: MyDotsService.stopService(context)
+        MyDotsService.stopService(context)
     }
 
     companion object {

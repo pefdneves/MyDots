@@ -28,6 +28,8 @@
             android:name=".view.activity.OverviewActivity"
             android:theme="@style/AppTheme.NoActionBar" />
 
+        <service android:name=".service.MyDotsService"/>
+
         <provider
             android:name="androidx.work.impl.WorkManagerInitializer"
             android:authorities="${applicationId}.workmanager-init"
