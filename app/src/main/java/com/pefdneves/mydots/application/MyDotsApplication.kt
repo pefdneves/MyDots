@@ -37,7 +37,7 @@ open class MyDotsApplication : DaggerApplication() {
             .setMinimumLoggingLevel(android.util.Log.INFO)
             .setWorkerFactory(NotificationWorkerFactory(notificationUseCase,dotsNotificationManager))
             .build()
-        //TODO: WorkManager.initialize(this, config)
+        WorkManager.initialize(this, config)
     }
 
 }
