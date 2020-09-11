@@ -1,11 +1,9 @@
 package com.pefdneves.mydots.inject
 
-import com.pefdneves.mydots.domain.usecase.ChooseDeviceUseCase
-import com.pefdneves.mydots.domain.usecase.ChooseDeviceUseCaseImpl
-import com.pefdneves.mydots.domain.usecase.OverviewUseCase
-import com.pefdneves.mydots.domain.usecase.OverviewUseCaseImpl
+import com.pefdneves.mydots.domain.usecase.*
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 class UseCaseModule {
@@ -17,5 +15,10 @@ class UseCaseModule {
     @Provides
     fun provideChooseDeviceUseCase(useCase: ChooseDeviceUseCaseImpl)
             : ChooseDeviceUseCase = useCase
+
+    @Provides
+    @Singleton
+    fun provideNotificationUseCase(useCase: NotificationUseCaseImpl)
+            : NotificationUseCase = useCase
 
 }
