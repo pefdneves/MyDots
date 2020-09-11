@@ -70,32 +70,7 @@ object DataBindingAdapters {
         textView: TextView,
         batteryInMinutes: Int
     ) {
-        val pair = TimeUtils.getHoursAndMinutesFromMinutes(batteryInMinutes)
-        if (pair.second in 1..60 && pair.first in 1..100) {
-            textView.text =
-                textView.context.getString(
-                    R.string.overview_battery_in_time_hours_and_minutes,
-                    pair.first,
-                    pair.second
-                )
-        } else if (pair.first < 1 && pair.second in 1..60) {
-            textView.text =
-                textView.context.getString(
-                    R.string.overview_battery_in_time_minutes,
-                    pair.second
-                )
-        } else if (pair.first in 1..100 && pair.second < 1) {
-            textView.text =
-                textView.context.getString(
-                    R.string.overview_battery_in_time_hours,
-                    pair.first
-                )
-        } else {
-            textView.text =
-                textView.context.getString(
-                    R.string.overview_battery_time_unknown
-                )
-        }
+        textView.text = TimeUtils.getHoursAndMinutesFromMinutesReadable(batteryInMinutes, textView.context)
     }
 
     @JvmStatic

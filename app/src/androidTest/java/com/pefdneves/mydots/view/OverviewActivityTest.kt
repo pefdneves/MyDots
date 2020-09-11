@@ -5,6 +5,7 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import com.pefdneves.mydots.R
 import com.pefdneves.mydots.inject.TestDotDeviceRepositoryImpl
@@ -51,7 +52,8 @@ class OverviewActivityTest {
     fun test_battery_percentage() {
         val batteryText = activityRule.activity.applicationContext.getString(
             R.string.overview_battery_in_percentage,
-            TestDotDeviceRepositoryImpl(TestSharedPreferencesRepositoryImpl()).getConnectedDevice().blockingFirst().batteryInPercentage
+            TestDotDeviceRepositoryImpl(TestSharedPreferencesRepositoryImpl()).getConnectedDevice()
+                .blockingFirst().batteryInPercentage
         )
         onView(withId(R.id.tv_battery_percentage))
             .check(matches(withText(batteryText)))
@@ -59,16 +61,13 @@ class OverviewActivityTest {
 
     @Test
     fun test_battery_minutes() {
-        val pair = TimeUtils.getHoursAndMinutesFromMinutes(
-            TestDotDeviceRepositoryImpl(TestSharedPreferencesRepositoryImpl()).getConnectedDevice().blockingFirst().batteryInMinutes
-        )
-        val batteryText = activityRule.activity.applicationContext.getString(
-            R.string.overview_battery_in_time_hours_and_minutes,
-            pair.first,
-            pair.second
+        val string = TimeUtils.getHoursAndMinutesFromMinutesReadable(
+            TestDotDeviceRepositoryImpl(TestSharedPreferencesRepositoryImpl()).getConnectedDevice()
+                .blockingFirst().batteryInMinutes
+            , InstrumentationRegistry.getInstrumentation().targetContext
         )
         onView(withId(R.id.tv_battery_minutes))
-            .check(matches(withText(batteryText)))
+            .check(matches(withText(string)))
     }
 
     @Test
