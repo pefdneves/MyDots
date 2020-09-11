@@ -12,5 +12,6 @@
     <dimen name="device_details_small_icons_width_height">20sp</dimen>
     <dimen name="device_details_overview_margin_top_item">5dp</dimen>
     <dimen name="device_details_overview_margin_start_item">5dp</dimen>
+    <dimen name="checkbox_overview_margin_bottom_button">10dp</dimen>
 
 </resources>

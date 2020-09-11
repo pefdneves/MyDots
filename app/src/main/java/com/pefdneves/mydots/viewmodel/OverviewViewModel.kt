@@ -47,8 +47,23 @@ class OverviewViewModel @Inject constructor(private val overviewUseCase: Overvie
             notifyPropertyChanged(BR.deviceIsConnected)
         }
 
+    @Bindable
+    var isNotificationEnabled = true
+        set(value) {
+            if (value != isNotificationEnabled) {
+                field = value
+                saveNotificationEnabled(value)
+                notifyPropertyChanged(BR.isNotificationEnabled)
+            }
+        }
+
+    private fun saveNotificationEnabled(isEnabled: Boolean) {
+        overviewUseCase.setNotificationEnabled(isEnabled)
+    }
+
     override fun setup() {
         overviewUseCase.getConnectedDevicesUpdates(dotDeviceCallback)
+        isNotificationEnabled = overviewUseCase.isNotificationEnabled()
     }
 
     private val dotDeviceCallback = object :

@@ -24,7 +24,10 @@ class OverviewViewModelTest {
 
     @Test
     fun test_setup() {
+        val isNotificationEnabled = false
         every { overviewUseCase.getConnectedDevicesUpdates(any()) } just runs
+        every { overviewUseCase.isNotificationEnabled() } returns isNotificationEnabled
+        every { overviewUseCase.setNotificationEnabled(isNotificationEnabled) } just runs
 
         testSubject.setup()
 

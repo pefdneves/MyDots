@@ -20,4 +20,5 @@
 
     <string name="notification_device_battery">Battery level: %1$d%% (%2$s)</string>
     <string name="notification_loading">Loading…</string>
+    <string name="overview_enable_notifications">Enable notification (experimental)</string>
 </resources>

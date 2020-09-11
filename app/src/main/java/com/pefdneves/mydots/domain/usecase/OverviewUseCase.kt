@@ -9,4 +9,8 @@ interface OverviewUseCase :
 
     fun getConnectedDevicesUpdates(callback: UseCaseCallback<DotBluetoothDevice>)
 
+    fun isNotificationEnabled(): Boolean
+
+    fun setNotificationEnabled(isEnabled: Boolean)
+
 }

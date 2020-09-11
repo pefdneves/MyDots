@@ -218,6 +218,18 @@
 
         </LinearLayout>
 
+        <CheckBox
+            android:checked="@={vm.notificationEnabled}"
+            style="@style/DefaultCheckBox"
+            android:layout_marginBottom="@dimen/checkbox_overview_margin_bottom_button"
+            android:id="@+id/chk_enable_notifications"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/overview_enable_notifications"
+            app:layout_constraintBottom_toTopOf="@id/btn_change_device"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
         <Button
             android:id="@+id/btn_change_device"
             style="@style/DefaultButton"
