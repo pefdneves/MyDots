@@ -1,5 +1,6 @@
 package com.pefdneves.mydots.inject
 
+import android.app.Service
 import com.pefdneves.mydots.application.MyDotsApplication
 import dagger.BindsInstance
 import dagger.Component
@@ -16,6 +17,7 @@ import javax.inject.Singleton
         BroadcastReceiverModule::class,
         RepositoryModule::class,
         ViewModelModule::class,
+        ServiceModule::class,
         UseCaseModule::class]
 )
 interface AppComponent : AndroidInjector<MyDotsApplication> {
