@@ -44,7 +44,10 @@ class OverviewViewModelTest {
         val fakeBatteryInPercentage = 50
         val fakeModel = XiaomiSpeakerModel.AIR_DOTS
         val fakeName = "name"
+        val notificationEnabled = false
         every { overviewUseCase.getConnectedDevicesUpdates(any()) } just runs
+        every { overviewUseCase.isNotificationEnabled() } returns notificationEnabled
+        every { overviewUseCase.setNotificationEnabled(notificationEnabled) } just runs
         every { mockDotBluetoothDevice.isConnected } returns fakeConnected
         every { mockDotBluetoothDevice.batteryInMinutes } returns fakeBatteryInMinutes
         every { mockDotBluetoothDevice.batteryInPercentage } returns fakeBatteryInPercentage
@@ -58,6 +61,8 @@ class OverviewViewModelTest {
         capturedCallback.captured.onResult(mockDotBluetoothDevice)
 
         verify(exactly = 1) {
+            overviewUseCase.isNotificationEnabled()
+            overviewUseCase.setNotificationEnabled(notificationEnabled)
             mockDotBluetoothDevice.isConnected
             mockDotBluetoothDevice.batteryInMinutes
             mockDotBluetoothDevice.batteryInPercentage
@@ -74,11 +79,18 @@ class OverviewViewModelTest {
     @Test
     fun test_callback_null() {
         val mockThrowable = mockk<Throwable>()
+        val notificationEnabled = false
         every { overviewUseCase.getConnectedDevicesUpdates(any()) } just runs
+        every { overviewUseCase.isNotificationEnabled() } returns notificationEnabled
+        every { overviewUseCase.setNotificationEnabled(notificationEnabled) } just runs
 
         val capturedCallback = CapturingSlot<UseCaseCallback<DotBluetoothDevice>>()
         testSubject.setup()
-        verify { overviewUseCase.getConnectedDevicesUpdates(capture(capturedCallback)) }
+        verify (exactly = 1){
+            overviewUseCase.getConnectedDevicesUpdates(capture(capturedCallback))
+            overviewUseCase.isNotificationEnabled()
+            overviewUseCase.setNotificationEnabled(notificationEnabled)
+        }
         assertTrue(capturedCallback.isCaptured)
         capturedCallback.captured.onError(mockThrowable)
 
