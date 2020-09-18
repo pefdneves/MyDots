@@ -27,6 +27,8 @@ class DotsNotificationManagerImpl(private val context: Context) : DotsNotificati
                 context.getString(R.string.notification_channel_name),
                 NotificationManager.IMPORTANCE_HIGH
             )
+        notificationChannel.setSound(null, null)
+        notificationChannel.enableVibration(false)
         getNotificationManager()?.createNotificationChannel(notificationChannel)
     }
 
