@@ -38,6 +38,10 @@ class ImageUtilsTest {
             R.drawable.tws_honor_choice
         )
         assertEquals(
+            ImageUtils.getDrawableIdFromModel(XiaomiSpeakerModel.AIR_DOTS_2_SE),
+            R.drawable.airdots2se
+        )
+        assertEquals(
             ImageUtils.getDrawableIdFromModel(XiaomiSpeakerModel.UNKNOWN),
             R.drawable.airdots
         )
