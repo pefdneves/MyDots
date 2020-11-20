@@ -18,6 +18,7 @@ object ImageUtils {
             XiaomiSpeakerModel.MI_SPEAKER -> R.drawable.mispeaker
             XiaomiSpeakerModel.TWS_HONOR_CHOICE -> R.drawable.tws_honor_choice
             XiaomiSpeakerModel.AIR_DOTS_2_SE -> R.drawable.airdots2se
+            XiaomiSpeakerModel.NICEBOY_HIVE -> R.drawable.niceboyhive
             else -> R.drawable.airdots
         }
     }
