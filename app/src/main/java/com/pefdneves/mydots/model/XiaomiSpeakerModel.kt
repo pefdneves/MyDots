@@ -5,5 +5,7 @@ enum class XiaomiSpeakerModel(val model: String) {
         "Xiaomi Wireless BL Speaker"
     ),
     MI_SPEAKER("Mi Speaker"), MI_POCKET_SPEAKER_2("Mi Pocket Speaker 2"), TWS_HONOR_CHOICE("TWS Honor Choice"),
-    AIR_DOTS_2_SE("Xiaomi Air Dots 2 SE"), NICEBOY_HIVE("Niceboy HIVE"), UNKNOWN("")
+    AIR_DOTS_2_SE("Xiaomi Air Dots 2 SE"), NICEBOY_HIVE("Niceboy HIVE"), NICEBOY_HIVE_PODSIE("Niceboy HIVE Podsie"), UNKNOWN(
+        ""
+    )
 }
