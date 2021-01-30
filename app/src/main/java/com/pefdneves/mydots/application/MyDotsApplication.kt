@@ -2,6 +2,7 @@ package com.pefdneves.mydots.application
 
 import androidx.work.Configuration
 import androidx.work.WorkManager
+import com.pefdneves.mydots.domain.repository.SharedPreferencesRepository
 import com.pefdneves.mydots.domain.usecase.NotificationUseCase
 import com.pefdneves.mydots.inject.DaggerAppComponent
 import com.pefdneves.mydots.utils.notification.DotsNotificationManager
@@ -17,6 +18,8 @@ open class MyDotsApplication : DaggerApplication() {
     lateinit var notificationUseCase: NotificationUseCase
     @Inject
     lateinit var dotsNotificationManager: DotsNotificationManager
+    @Inject
+    lateinit var sharedPreferencesRepository: SharedPreferencesRepository
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
         val appComponent = DaggerAppComponent.builder().application(this).build()
@@ -35,7 +38,7 @@ open class MyDotsApplication : DaggerApplication() {
     private fun initializeWorkManager() {
         val config = Configuration.Builder()
             .setMinimumLoggingLevel(android.util.Log.INFO)
-            .setWorkerFactory(NotificationWorkerFactory(notificationUseCase,dotsNotificationManager))
+            .setWorkerFactory(NotificationWorkerFactory(notificationUseCase,dotsNotificationManager, sharedPreferencesRepository))
             .build()
         WorkManager.initialize(this, config)
     }

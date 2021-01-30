@@ -2,6 +2,7 @@ package com.pefdneves.mydots.worker
 
 import android.content.Context
 import androidx.work.WorkerParameters
+import com.pefdneves.mydots.domain.repository.SharedPreferencesRepositoryImpl
 import com.pefdneves.mydots.domain.usecase.NotificationUseCaseImpl
 import com.pefdneves.mydots.utils.notification.DotsNotificationManagerImpl
 import io.mockk.mockk
@@ -12,14 +13,16 @@ class NotificationWorkerFactoryTest {
 
     private lateinit var mockNotificationManager: DotsNotificationManagerImpl
     private lateinit var mockNotificationUseCaseImpl: NotificationUseCaseImpl
+    private lateinit var mockSharedPreferencesRepository: SharedPreferencesRepositoryImpl
     private lateinit var testSubject: NotificationWorkerFactory
 
     @Before
     fun setup() {
         mockNotificationManager = mockk()
         mockNotificationUseCaseImpl = mockk()
+        mockSharedPreferencesRepository = mockk()
         testSubject =
-            NotificationWorkerFactory(mockNotificationUseCaseImpl, mockNotificationManager)
+            NotificationWorkerFactory(mockNotificationUseCaseImpl, mockNotificationManager, mockSharedPreferencesRepository)
     }
 
     @Test

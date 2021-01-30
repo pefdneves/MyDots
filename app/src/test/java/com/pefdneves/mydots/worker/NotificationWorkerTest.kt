@@ -6,7 +6,9 @@ import android.graphics.Bitmap
 import androidx.work.ListenableWorker
 import androidx.work.WorkerParameters
 import com.pefdneves.mydots.R
+import com.pefdneves.mydots.domain.repository.SharedPreferencesRepositoryImpl
 import com.pefdneves.mydots.domain.usecase.NotificationUseCaseImpl
+import com.pefdneves.mydots.model.XiaomiSpeakerModel
 import com.pefdneves.mydots.utils.ImageUtils
 import com.pefdneves.mydots.utils.TimeUtils
 import com.pefdneves.mydots.utils.notification.DotsNotificationManagerImpl
@@ -21,12 +23,14 @@ class NotificationWorkerTest {
     private lateinit var testSubject: NotificationWorker
     private lateinit var mockNotificationManager: DotsNotificationManagerImpl
     private lateinit var mockNotificationUseCaseImpl: NotificationUseCaseImpl
+    private lateinit var mockSharedPreferencesRepository: SharedPreferencesRepositoryImpl
     private lateinit var mockContext: Context
     private lateinit var mockWorkerParameters: WorkerParameters
 
     @Before
     fun setup() {
         mockNotificationManager = mockk()
+        mockSharedPreferencesRepository = mockk()
         mockNotificationUseCaseImpl = mockk()
         mockContext = mockk()
         mockWorkerParameters = mockk()
@@ -35,7 +39,8 @@ class NotificationWorkerTest {
                 mockContext,
                 mockWorkerParameters,
                 mockNotificationUseCaseImpl,
-                mockNotificationManager
+                mockNotificationManager,
+                mockSharedPreferencesRepository
             )
     }
 
@@ -63,7 +68,7 @@ class NotificationWorkerTest {
         val fakeMessage = "fake_message"
         val fakeImageResource = 12
         val fakeBitmap = mockk<Bitmap>()
-        val fakeBluetoothDeviceName = "fake_bluetooth_device"
+        val fakeDeviceModel = XiaomiSpeakerModel.AIR_DOTS
         val mockBluetoothDevice = mockk<BluetoothDevice>()
         val fakeResult = mockk<ListenableWorker.Result>()
 
@@ -79,14 +84,15 @@ class NotificationWorkerTest {
         every { mockContext.getString(R.string.notification_device_battery, fakeBatteryLevel, fakeHoursAndMinutes) } returns fakeMessage
         every { mockNotificationUseCaseImpl.getImageResourceFromModel() } returns fakeImageResource
         every { ImageUtils.getBitmapFromDrawable(mockContext,fakeImageResource) } returns fakeBitmap
-        every { mockBluetoothDevice.name } returns fakeBluetoothDeviceName
-        every { mockNotificationManager.showNotification(fakeBluetoothDeviceName, fakeMessage, fakeBitmap) } just Runs
+        every { mockNotificationManager.showNotification(fakeDeviceModel.model, fakeMessage, fakeBitmap) } just Runs
         every { ListenableWorker.Result.success() } returns fakeResult
+        every { mockSharedPreferencesRepository.getRegisteredModel() } returns fakeDeviceModel
 
         val result =  testSubject.doWork()
         Assert.assertEquals(fakeResult, result)
 
         verify(exactly = 1) {
+            mockSharedPreferencesRepository.getRegisteredModel()
             mockNotificationUseCaseImpl.getBluetoothDevice()
             mockNotificationUseCaseImpl.getBatteryLevel(mockBluetoothDevice)
             mockNotificationUseCaseImpl.getBatteryTime(fakeBatteryLevel)
@@ -94,8 +100,7 @@ class NotificationWorkerTest {
             mockContext.getString(R.string.notification_device_battery, fakeBatteryLevel, fakeHoursAndMinutes)
             mockNotificationUseCaseImpl.getImageResourceFromModel()
             ImageUtils.getBitmapFromDrawable(mockContext,fakeImageResource)
-            mockBluetoothDevice.name
-            mockNotificationManager.showNotification(fakeBluetoothDeviceName, fakeMessage, fakeBitmap)
+            mockNotificationManager.showNotification(fakeDeviceModel.model, fakeMessage, fakeBitmap)
             ListenableWorker.Result.success()
         }
 

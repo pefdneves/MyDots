@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.pefdneves.mydots.R
+import com.pefdneves.mydots.domain.repository.SharedPreferencesRepository
 import com.pefdneves.mydots.domain.usecase.NotificationUseCase
 import com.pefdneves.mydots.utils.ImageUtils
 import com.pefdneves.mydots.utils.TimeUtils
@@ -14,7 +15,8 @@ class NotificationWorker(
     private val context: Context,
     workerParameters: WorkerParameters,
     private val notificationUseCase: NotificationUseCase,
-    private val dotsNotificationManager: DotsNotificationManager
+    private val dotsNotificationManager: DotsNotificationManager,
+    private val sharedPreferencesRepository: SharedPreferencesRepository
 ) : Worker(context, workerParameters) {
 
     override fun onStopped() {
@@ -33,6 +35,7 @@ class NotificationWorker(
         bluetoothDevice: BluetoothDevice,
         context: Context?
     ) {
+        val deviceName: String = sharedPreferencesRepository.getRegisteredModel()?.model ?: bluetoothDevice.name
         val batteryLevel = notificationUseCase.getBatteryLevel(bluetoothDevice)
         val batteryInMinutes = notificationUseCase.getBatteryTime(batteryLevel)
         val message = context?.getString(
@@ -47,7 +50,7 @@ class NotificationWorker(
             )
             if (bitmap != null && message != null) {
                 dotsNotificationManager.showNotification(
-                    bluetoothDevice.name,
+                    deviceName,
                     message,
                     bitmap
                 )
