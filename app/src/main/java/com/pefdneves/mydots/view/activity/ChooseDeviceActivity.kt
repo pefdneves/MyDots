@@ -90,6 +90,8 @@ class ChooseDeviceActivity : DaggerAppCompatActivity(), View.OnClickListener,
                 dialog.dismiss()
             }
             alertDialog.show()
+        }.doOnError {
+            showBluetoothDisabledDialog()
         }.subscribe()
 
     }
