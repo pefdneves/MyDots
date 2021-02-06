@@ -1,0 +1,23 @@
+<resources>
+    <string name="notification_channel_name">Статус MyDots</string>
+
+    <string name="save">Сохранить</string>
+
+    <string name="choose_your_device_title">Выберете ваше устройство</string>
+    <string name="choose_your_device_choose_bluetooth_device_title">Выберите название bluetooth:</string>
+    <string name="choose_your_device_bluetooth_is_disabled">Bluetooth отключен. Пожалуйста, включите его и попробуйте еще раз.</string>
+
+    <string name="overview_device_is_connected">Подключено</string>
+    <string name="overview_device_is_not_connected">Не подключено</string>
+    <string name="overview_battery_in_time_hours_and_minutes">%1$d часов и %2$d минут</string>
+    <string name="overview_battery_in_time_minutes">%1$d минут</string>
+    <string name="overview_battery_in_time_hours">%1$d часов</string>
+    <string name="overview_battery_in_percentage">%1$d%% осталось</string>
+    <string name="overview_change_device">Сменить устройство</string>
+    <string name="overview_battery_level_unknown">Процент аккумулятора не известен</string>
+    <string name="overview_battery_time_unknown">Время аккумулятора не известно</string>
+
+    <string name="notification_device_battery">Уровень аккумулятора: %1$d%% (%2$s)</string>
+    <string name="notification_loading">Загрузка…</string>
+    <string name="overview_enable_notifications">Включить уведомления (эксперементальное)</string>
+</resources>

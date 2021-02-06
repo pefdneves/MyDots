@@ -1,0 +1,23 @@
+<resources>
+    <string name="notification_channel_name">MyDots status</string>
+
+    <string name="save">Gravar</string>
+
+    <string name="choose_your_device_title">Escolha o dispositivo</string>
+    <string name="choose_your_device_choose_bluetooth_device_title">Escolha o dispositivo bluetooth:</string>
+    <string name="choose_your_device_bluetooth_is_disabled">O bluetooth está desligado, por favor ligue e tente de novo.</string>
+
+    <string name="overview_device_is_connected">Conectado</string>
+    <string name="overview_device_is_not_connected">Desconectado</string>
+    <string name="overview_battery_in_time_hours_and_minutes">%1$d horas e %2$d minutos</string>
+    <string name="overview_battery_in_time_minutes">%1$d minutos</string>
+    <string name="overview_battery_in_time_hours">%1$d horas</string>
+    <string name="overview_battery_in_percentage">%1$d%% disponível</string>
+    <string name="overview_change_device">Alterar dispositivo</string>
+    <string name="overview_battery_level_unknown">Percentagem disponível desconhecida</string>
+    <string name="overview_battery_time_unknown">Tempo disponível disconhecido</string>
+
+    <string name="notification_device_battery">Bateria: %1$d%% (%2$s)</string>
+    <string name="notification_loading">Carregando…</string>
+    <string name="overview_enable_notifications">Activar notificação (experimental)</string>
+</resources>

@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">MyDots</string>
-    <string name="notification_channel_id">com.pefdneves.mydots.devicenotification</string>
+    <string name="app_name" translatable="false">MyDots</string>
+    <string name="notification_channel_id" translatable="false">com.pefdneves.mydots.devicenotification</string>
     <string name="notification_channel_name">MyDots status</string>
 
     <string name="save">Save</string>
