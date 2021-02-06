@@ -72,6 +72,10 @@ class ChooseDeviceActivity : DaggerAppCompatActivity(), View.OnClickListener,
 
     private fun showSelectedBluetoothDeviceDialog() {
         deviceRepository.getPairedDevices().doOnNext { bluetoothDeviceSet ->
+            if (bluetoothDeviceSet.isNullOrEmpty()) {
+                showBluetoothDisabledDialog()
+                return@doOnNext
+            }
             val alertDialog: AlertDialog.Builder = AlertDialog.Builder(this)
             alertDialog.setTitle(getString(R.string.choose_your_device_choose_bluetooth_device_title))
             val devices = bluetoothDeviceSet.filter { it?.name != null && it.address != null }
@@ -88,6 +92,12 @@ class ChooseDeviceActivity : DaggerAppCompatActivity(), View.OnClickListener,
             alertDialog.show()
         }.subscribe()
 
+    }
+
+    private fun showBluetoothDisabledDialog() {
+        val alertDialog: AlertDialog.Builder = AlertDialog.Builder(this)
+        alertDialog.setMessage(getString(R.string.choose_your_device_bluetooth_is_disabled))
+        alertDialog.show()
     }
 
     private fun goToOverview() {

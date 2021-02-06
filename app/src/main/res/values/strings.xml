@@ -7,6 +7,7 @@
 
     <string name="choose_your_device_title">Choose your device</string>
     <string name="choose_your_device_choose_bluetooth_device_title">Choose the bluetooth name:</string>
+    <string name="choose_your_device_bluetooth_is_disabled">Bluetooth is disabled. Please enable it and try again.</string>
 
     <string name="overview_device_is_connected">Connected</string>
     <string name="overview_device_is_not_connected">Disconnected</string>
