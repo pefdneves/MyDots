@@ -11,6 +11,7 @@ object ImageUtils {
     fun getDrawableIdFromModel(xiaomiSpeakerModel: XiaomiSpeakerModel): Int {
         return when (xiaomiSpeakerModel) {
             XiaomiSpeakerModel.AIR_DOTS -> R.drawable.airdots
+            XiaomiSpeakerModel.AIR_DOTS_S -> R.drawable.airdots
             XiaomiSpeakerModel.AIR_DOTS_PRO_1 -> R.drawable.airdotspro
             XiaomiSpeakerModel.AIR_DOTS_PRO_2 -> R.drawable.airdotspro2
             XiaomiSpeakerModel.XIAOMI_WIRELESS_BLUETOOTH_SPEAKER -> R.drawable.wireless_bl_speaker
