@@ -42,6 +42,7 @@ class BluetoothUtilsImpl @Inject constructor() : BluetoothUtils {
             XiaomiSpeakerModel.NICEBOY_HIVE_PODSIE -> factor * NICEBOY_HIVE_PODSIE_BATTERY_MINUTES
             XiaomiSpeakerModel.AIR_DOTS_S -> factor * AIR_DOTS_S_BATTERY_MINUTES
             XiaomiSpeakerModel.AIR_DOTS_3 -> factor * AIR_DOTS_3_BATTERY_MINUTES
+            XiaomiSpeakerModel.AIR_DOTS_PRO_3 -> factor * AIR_DOTS_3_PRO_BATTERY_MINUTES
             else -> {
                 -1.0
             }
@@ -62,6 +63,7 @@ class BluetoothUtilsImpl @Inject constructor() : BluetoothUtils {
         private const val AIR_DOTS_BATTERY_MINUTES = 240
         private const val AIR_DOTS_S_BATTERY_MINUTES = 240
         private const val AIR_DOTS_3_BATTERY_MINUTES = 360
+        private const val AIR_DOTS_3_PRO_BATTERY_MINUTES = 360
         private const val AIR_DOTS_PRO_BATTERY_MINUTES = 180
         private const val AIR_DOTS_PRO_2_BATTERY_MINUTES = 240
         private const val MI_SPEAKER_BATTERY_MINUTES = 480

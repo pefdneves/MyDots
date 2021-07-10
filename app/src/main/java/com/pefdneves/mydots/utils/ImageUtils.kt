@@ -15,6 +15,7 @@ object ImageUtils {
             XiaomiSpeakerModel.AIR_DOTS_3 -> R.drawable.airdots3
             XiaomiSpeakerModel.AIR_DOTS_PRO_1 -> R.drawable.airdotspro
             XiaomiSpeakerModel.AIR_DOTS_PRO_2 -> R.drawable.airdotspro2
+            XiaomiSpeakerModel.AIR_DOTS_PRO_3 -> R.drawable.airdotspro3
             XiaomiSpeakerModel.XIAOMI_WIRELESS_BLUETOOTH_SPEAKER -> R.drawable.wireless_bl_speaker
             XiaomiSpeakerModel.MI_POCKET_SPEAKER_2 -> R.drawable.mipocketspeaker2
             XiaomiSpeakerModel.MI_SPEAKER -> R.drawable.mispeaker
