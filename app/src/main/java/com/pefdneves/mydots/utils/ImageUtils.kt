@@ -20,6 +20,7 @@ object ImageUtils {
             XiaomiSpeakerModel.REDMI_BUDS_3_LITE -> R.drawable.redmibuds3lite
             XiaomiSpeakerModel.REDMI_BUDS_3_PRO -> R.drawable.redmibuds3pro
             XiaomiSpeakerModel.XIAOMI_BUDS_3T_PRO -> R.drawable.xiaomibuds3tpro
+            XiaomiSpeakerModel.XIAOMI_BUDS_3 -> R.drawable.xiaomibuds3
             XiaomiSpeakerModel.XIAOMI_WIRELESS_BLUETOOTH_SPEAKER -> R.drawable.wireless_bl_speaker
             XiaomiSpeakerModel.MI_POCKET_SPEAKER_2 -> R.drawable.mipocketspeaker2
             XiaomiSpeakerModel.MI_SPEAKER -> R.drawable.mispeaker
