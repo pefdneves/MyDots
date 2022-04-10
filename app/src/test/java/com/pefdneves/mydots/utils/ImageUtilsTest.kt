@@ -82,6 +82,10 @@ class ImageUtilsTest {
             R.drawable.xiaomibuds3
         )
         assertEquals(
+            ImageUtils.getDrawableIdFromModel(XiaomiSpeakerModel.MI_TWS_BASIC_2S),
+            R.drawable.mitwsbasic2s
+        )
+        assertEquals(
             ImageUtils.getDrawableIdFromModel(XiaomiSpeakerModel.UNKNOWN),
             R.drawable.airdots
         )
