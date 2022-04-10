@@ -46,6 +46,7 @@ class BluetoothUtilsImpl @Inject constructor() : BluetoothUtils {
             XiaomiSpeakerModel.FLIPBUDS_PRO -> factor * FLIPBUDS_PRO_BATTERY_MINUTES
             XiaomiSpeakerModel.REDMI_BUDS_3_LITE -> factor * REDMI_BUDS_3_LITE_BATTERY_MINUTES
             XiaomiSpeakerModel.REDMI_BUDS_3_PRO -> factor * REDMI_BUDS_3_PRO_BATTERY_MINUTES
+            XiaomiSpeakerModel.XIAOMI_BUDS_3T_PRO -> factor * XIAOMI_BUDS_3T_PRO_BATTERY_MINUTES
             else -> {
                 -1.0
             }
@@ -63,6 +64,7 @@ class BluetoothUtilsImpl @Inject constructor() : BluetoothUtils {
     }
 
     companion object {
+        private const val XIAOMI_BUDS_3T_PRO_BATTERY_MINUTES = 360
         private const val REDMI_BUDS_3_PRO_BATTERY_MINUTES = 360
         private const val REDMI_BUDS_3_LITE_BATTERY_MINUTES = 300
         private const val FLIPBUDS_PRO_BATTERY_MINUTES = 420
