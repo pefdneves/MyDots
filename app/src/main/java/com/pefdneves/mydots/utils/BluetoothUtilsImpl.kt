@@ -49,6 +49,7 @@ class BluetoothUtilsImpl @Inject constructor() : BluetoothUtils {
             XiaomiSpeakerModel.XIAOMI_BUDS_3T_PRO -> factor * XIAOMI_BUDS_3T_PRO_BATTERY_MINUTES
             XiaomiSpeakerModel.XIAOMI_BUDS_3 -> factor * XIAOMI_BUDS_3_BATTERY_MINUTES
             XiaomiSpeakerModel.MI_TWS_BASIC_2S -> factor * MI_TWS_BASIC_2_BATTERY_MINUTES
+            XiaomiSpeakerModel.MI_TWS_2_PRO -> factor * MI_TWS_PRO_2_BATTERY_MINUTES
             else -> {
                 -1.0
             }
@@ -66,6 +67,7 @@ class BluetoothUtilsImpl @Inject constructor() : BluetoothUtils {
     }
 
     companion object {
+        private const val MI_TWS_PRO_2_BATTERY_MINUTES = 360
         private const val MI_TWS_BASIC_2_BATTERY_MINUTES = 240
         private const val XIAOMI_BUDS_3_BATTERY_MINUTES = 420
         private const val XIAOMI_BUDS_3T_PRO_BATTERY_MINUTES = 360
