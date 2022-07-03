@@ -33,6 +33,7 @@ class AppModule {
         return BluetoothUtilsImpl()
     }
 
+    @Singleton
     @Provides
     fun provideDotsNotificationManager(context : Context): DotsNotificationManager {
         return DotsNotificationManagerImpl(context)
