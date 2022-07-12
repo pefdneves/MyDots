@@ -15,7 +15,6 @@ import com.pefdneves.mydots.view.activity.SplashActivity
 class DotsNotificationManagerImpl(private val context: Context) : DotsNotificationManager {
 
     private var notificationManager: NotificationManager? = null
-    private var notificationBuilder: Notification.Builder? = null
 
     init {
         createChannel()
@@ -42,43 +41,32 @@ class DotsNotificationManagerImpl(private val context: Context) : DotsNotificati
         return notificationManager
     }
 
-    private fun getPendingIntent(): PendingIntent {
+    private fun getPendingIntent() : PendingIntent{
         val intent = Intent(context, SplashActivity::class.java)
         return PendingIntent.getActivity(context, 0, intent, FLAG_UPDATE_CURRENT)
     }
 
     override fun getDefaultForegroundNotification(): Notification {
-        return getNotificationBuilder().build()
-    }
-
-    private fun getNotificationBuilder(): Notification.Builder {
-        notificationBuilder?.also {
-            return it.setDefaultTitleAndText()
-        }
-        return Notification.Builder(context, context.getString(R.string.notification_channel_id))
+        val notificationBuilder : Notification.Builder = Notification.Builder(context, context.getString(R.string.notification_channel_id))
+            .setContentTitle(context.getString(R.string.app_name))
+            .setContentText(context.getString(R.string.notification_loading))
             .setSmallIcon(R.drawable.app_icon_white_transparent)
             .setAutoCancel(false)
             .setOngoing(true)
             .setContentIntent(getPendingIntent())
-            .setDefaultTitleAndText()
-            .setOnlyAlertOnce(true).also {
-                notificationBuilder = it
-            }
-    }
-
-    private fun Notification.Builder.setDefaultTitleAndText(): Notification.Builder {
-        setContentTitle(context.getString(R.string.app_name))
-        setContentText(context.getString(R.string.notification_loading))
-        return this
+        return notificationBuilder.build()
     }
 
     override fun showNotification(title: String, message: String, largeIcon: Bitmap) {
-        notificationBuilder?.apply {
-            setContentTitle(title)
-            setContentText(message)
-            setLargeIcon(largeIcon)
-            notificationManager?.notify(DEFAULT_NOTIFICATION_ID, build())
-        }
+            val notificationBuilder : Notification.Builder = Notification.Builder(context, context.getString(R.string.notification_channel_id))
+                .setContentTitle(title)
+                .setContentText(message)
+                .setSmallIcon(R.drawable.app_icon_white_transparent)
+                .setLargeIcon(largeIcon)
+                .setAutoCancel(false)
+                .setOngoing(true)
+                .setContentIntent(getPendingIntent())
+            notificationManager?.notify(DEFAULT_NOTIFICATION_ID, notificationBuilder.build())
     }
 
     override fun cancelNotification() {
