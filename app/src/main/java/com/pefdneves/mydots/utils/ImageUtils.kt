@@ -19,6 +19,7 @@ object ImageUtils {
             XiaomiSpeakerModel.FLIPBUDS_PRO -> R.drawable.flipbudspro
             XiaomiSpeakerModel.REDMI_BUDS_3_LITE -> R.drawable.redmibuds3lite
             XiaomiSpeakerModel.REDMI_BUDS_3_PRO -> R.drawable.redmibuds3pro
+            XiaomiSpeakerModel.REDMI_BUDS_ESSENTIAL -> R.drawable.redmibudsessential
             XiaomiSpeakerModel.XIAOMI_BUDS_3T_PRO -> R.drawable.xiaomibuds3tpro
             XiaomiSpeakerModel.XIAOMI_BUDS_3 -> R.drawable.xiaomibuds3
             XiaomiSpeakerModel.MI_TWS_BASIC_2S -> R.drawable.mitwsbasic2s
