@@ -43,7 +43,12 @@ class DotsNotificationManagerImpl(private val context: Context) : DotsNotificati
 
     private fun getPendingIntent(): PendingIntent {
         val intent = Intent(context, SplashActivity::class.java)
-        return PendingIntent.getActivity(context, 0, intent, FLAG_UPDATE_CURRENT)
+        return PendingIntent.getActivity(
+            context,
+            0,
+            intent,
+            FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
     }
 
     private fun getBaseNotificationBuilder(): Notification.Builder {

@@ -30,7 +30,7 @@ open class BaseViewModel(private val useCase: BaseUseCaseInterface?) : ViewModel
         callbacks.notifyCallbacks(this, varId, null)
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
     fun onClear() {
         useCase?.clear()
     }

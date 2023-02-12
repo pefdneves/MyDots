@@ -11,10 +11,9 @@ import com.pefdneves.mydots.R
 import com.pefdneves.mydots.databinding.ActivityOverviewBinding
 import com.pefdneves.mydots.viewmodel.OverviewViewModel
 import dagger.android.AndroidInjection
-import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
-class OverviewActivity : DaggerAppCompatActivity(), LifecycleObserver, View.OnClickListener {
+class OverviewActivity : BaseActivity(), LifecycleObserver, View.OnClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

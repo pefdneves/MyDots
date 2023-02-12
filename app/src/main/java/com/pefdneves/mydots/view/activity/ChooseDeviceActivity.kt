@@ -17,10 +17,9 @@ import com.pefdneves.mydots.domain.repository.DotDeviceRepository
 import com.pefdneves.mydots.model.XiaomiSpeakerModel
 import com.pefdneves.mydots.viewmodel.ChooseDeviceViewModel
 import dagger.android.AndroidInjection
-import dagger.android.support.DaggerAppCompatActivity
 import javax.inject.Inject
 
-class ChooseDeviceActivity : DaggerAppCompatActivity(), View.OnClickListener,
+class ChooseDeviceActivity : BaseActivity(), View.OnClickListener,
     AdapterView.OnItemSelectedListener {
 
     @Inject

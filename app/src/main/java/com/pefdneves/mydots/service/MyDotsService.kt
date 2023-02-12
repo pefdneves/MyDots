@@ -7,7 +7,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.IBinder
 import android.os.SystemClock
-import android.util.Log
 import androidx.core.content.ContextCompat
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
@@ -82,7 +81,7 @@ class MyDotsService : DaggerService() {
             applicationContext,
             1,
             restartServiceIntent,
-            PendingIntent.FLAG_ONE_SHOT
+            PendingIntent.FLAG_ONE_SHOT or PendingIntent.FLAG_IMMUTABLE
         )
         val alarmService =
             applicationContext.getSystemService(Context.ALARM_SERVICE) as AlarmManager
