@@ -89,6 +89,18 @@ class DotsNotificationManagerImpl(private val context: Context) : DotsNotificati
         MyDotsService.stopService(context)
     }
 
+    override fun getDefaultMissingPermissionsNotification(): Notification {
+        val notificationBuilder: Notification.Builder =
+            getBaseNotificationBuilder()
+                .setContentTitle(context.getString(R.string.app_name))
+                .setContentText(context.getString(R.string.notification_missing_permissions))
+        return notificationBuilder.build()
+    }
+
+    override fun showPermissionsMissingNotification() {
+        notificationManager?.notify(DEFAULT_NOTIFICATION_ID, getDefaultMissingPermissionsNotification())
+    }
+
     companion object {
         const val DEFAULT_NOTIFICATION_ID = 888
     }

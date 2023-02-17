@@ -34,6 +34,8 @@
 
     <string name="notification_loading">Laddar…</string>
 
+    <string name="notification_missing_permissions">Det verkar som att du inte har godkänt alla behörigheter som behövs!</string>
+
     <string name="overview_enable_notifications">Aktivera aviseringar (experimentell)</string>
 
 </resources>

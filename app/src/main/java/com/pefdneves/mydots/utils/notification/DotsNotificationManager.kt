@@ -15,4 +15,7 @@ interface DotsNotificationManager {
 
     fun stopNotificationService()
 
+    fun showPermissionsMissingNotification()
+
+    fun getDefaultMissingPermissionsNotification(): Notification?
 }

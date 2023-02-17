@@ -48,7 +48,7 @@ class OverviewViewModel @Inject constructor(private val overviewUseCase: Overvie
         }
 
     @Bindable
-    var isNotificationEnabled = true
+    var isNotificationEnabled = false
         set(value) {
             if (value != isNotificationEnabled) {
                 field = value

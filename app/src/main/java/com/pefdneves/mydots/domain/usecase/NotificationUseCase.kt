@@ -22,4 +22,6 @@ interface NotificationUseCase {
     fun cancelNotification()
 
     fun getBluetoothDevice(): BluetoothDevice?
+
+    fun getDefaultMissingPermissionsNotification(): Notification?
 }

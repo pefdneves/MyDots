@@ -257,6 +257,19 @@ class NotificationUseCaseImplTest {
     }
 
     @Test
+    fun test_getDefaultMissingPermissionsNotification() {
+        val notification = mockk<Notification>()
+        every { mockNotificationManager.getDefaultMissingPermissionsNotification() } returns notification
+
+        val value = testSubject.getDefaultMissingPermissionsNotification()
+
+        assertSame(notification, value)
+        verify(exactly = 1) {
+            mockNotificationManager.getDefaultMissingPermissionsNotification()
+        }
+    }
+
+    @Test
     fun test_cancelNotification() {
         every { mockNotificationManager.cancelNotification() } just runs
 

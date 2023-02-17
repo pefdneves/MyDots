@@ -19,5 +19,6 @@
 
     <string name="notification_device_battery">Bateria: %1$d%% (%2$s)</string>
     <string name="notification_loading">Carregando…</string>
+    <string name="notification_missing_permissions">A app não têm as permissões necessárias para mostrar o estado da bateria.</string>
     <string name="overview_enable_notifications">Activar notificação (experimental)</string>
 </resources>

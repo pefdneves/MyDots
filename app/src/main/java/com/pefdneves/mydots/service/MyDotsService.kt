@@ -1,17 +1,24 @@
 package com.pefdneves.mydots.service
 
+import android.Manifest
 import android.app.AlarmManager
 import android.app.PendingIntent
 import android.app.Service
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.content.pm.ServiceInfo
+import android.os.Build
 import android.os.IBinder
 import android.os.SystemClock
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.PeriodicWorkRequest
 import androidx.work.WorkManager
 import com.pefdneves.mydots.domain.usecase.NotificationUseCase
+import com.pefdneves.mydots.utils.hasBluetoothPermissions
+import com.pefdneves.mydots.utils.notification.DotsNotificationManager
 import com.pefdneves.mydots.utils.notification.DotsNotificationManagerImpl
 import com.pefdneves.mydots.worker.NotificationWorker
 import dagger.android.DaggerService
@@ -23,34 +30,74 @@ class MyDotsService : DaggerService() {
     @Inject
     lateinit var notificationUseCase: NotificationUseCase
 
+    @Inject
+    lateinit var myDotsNotificationManager: DotsNotificationManager
+
     private var workRequest: PeriodicWorkRequest? = null
     private var workManager: WorkManager? = null
+
+    private fun startForegroundService() {
+        if (isAndroidQOrAbove()) {
+            notificationUseCase.getDefaultForegroundNotification()?.also { notification ->
+                startForeground(
+                    DotsNotificationManagerImpl.DEFAULT_NOTIFICATION_ID,
+                    notification,
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE
+                )
+            }
+        } else {
+            startForeground(
+                DotsNotificationManagerImpl.DEFAULT_NOTIFICATION_ID,
+                notificationUseCase.getDefaultForegroundNotification()
+            )
+        }
+    }
+
+    private fun isAndroidQOrAbove() = Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
 
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        startForeground(
-            DotsNotificationManagerImpl.DEFAULT_NOTIFICATION_ID,
-            notificationUseCase.getDefaultForegroundNotification()
-        )
+        startForegroundService()
         if (!notificationUseCase.isNotificationEnabled()) {
             stopSelf()
         } else {
             waitForBluetoothToUpdateBattery()
             workManager = WorkManager.getInstance(this)
-            if (notificationUseCase.isDeviceConnected()) {
-                if (notificationUseCase.isRegisteredDevice()) {
-                    scheduleWorker()
+            if (!hasBluetoothPermissions(applicationContext)) {
+                showAllowPermissionsNotification()
+            } else {
+                if (notificationUseCase.isDeviceConnected()) {
+                    if (notificationUseCase.isRegisteredDevice()) {
+                        scheduleWorker()
+                    } else {
+                        stopSelf()
+                    }
                 } else {
                     stopSelf()
                 }
-            } else {
-                stopSelf()
             }
         }
         return Service.START_STICKY
+    }
+
+    private fun showAllowPermissionsNotification() {
+        if (isAndroidQOrAbove()) {
+            notificationUseCase.getDefaultMissingPermissionsNotification()?.also { notification ->
+                startForeground(
+                    DotsNotificationManagerImpl.DEFAULT_NOTIFICATION_ID,
+                    notification,
+                    ServiceInfo.FOREGROUND_SERVICE_TYPE_CONNECTED_DEVICE
+                )
+            }
+        } else {
+            startForeground(
+                DotsNotificationManagerImpl.DEFAULT_NOTIFICATION_ID,
+                notificationUseCase.getDefaultMissingPermissionsNotification()
+            )
+        }
     }
 
     override fun onDestroy() {

@@ -65,18 +65,26 @@ class NotificationUseCaseImpl @Inject constructor(
         return notificationManager.getDefaultForegroundNotification()
     }
 
+    override fun getDefaultMissingPermissionsNotification(): Notification? {
+        return notificationManager.getDefaultMissingPermissionsNotification()
+    }
+
     override fun cancelNotification() {
         notificationManager.cancelNotification()
     }
 
     override fun getBluetoothDevice(): BluetoothDevice? {
-        val pairedDevices = BluetoothAdapter.getDefaultAdapter()?.bondedDevices
-        return if (pairedDevices != null && sharedPreferencesRepository.getRegisteredAddress() != null) {
-            bluetoothUtils.getDeviceByAddress(
-                pairedDevices,
-                sharedPreferencesRepository.getRegisteredAddress()!!
-            )
-        } else {
+        return try {
+            val pairedDevices = BluetoothAdapter.getDefaultAdapter()?.bondedDevices
+            if (pairedDevices != null && sharedPreferencesRepository.getRegisteredAddress() != null) {
+                bluetoothUtils.getDeviceByAddress(
+                    pairedDevices,
+                    sharedPreferencesRepository.getRegisteredAddress()!!
+                )
+            } else {
+                null
+            }
+        } catch (exception: SecurityException) {
             null
         }
     }

@@ -19,5 +19,6 @@
 
     <string name="notification_device_battery">Уровень аккумулятора: %1$d%% (%2$s)</string>
     <string name="notification_loading">Загрузка…</string>
+    <string name="notification_missing_permissions">Похоже, вы не одобрили все необходимые для этого разрешения!</string>
     <string name="overview_enable_notifications">Включить уведомления (эксперементальное)</string>
 </resources>

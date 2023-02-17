@@ -9,6 +9,7 @@ import com.pefdneves.mydots.domain.repository.SharedPreferencesRepository
 import com.pefdneves.mydots.domain.usecase.NotificationUseCase
 import com.pefdneves.mydots.utils.ImageUtils
 import com.pefdneves.mydots.utils.TimeUtils
+import com.pefdneves.mydots.utils.hasBluetoothPermissions
 import com.pefdneves.mydots.utils.notification.DotsNotificationManager
 
 class NotificationWorker(
@@ -25,6 +26,9 @@ class NotificationWorker(
     }
 
     override fun doWork(): Result {
+        if (!hasBluetoothPermissions(context)) {
+            dotsNotificationManager.showPermissionsMissingNotification()
+        }
         notificationUseCase.getBluetoothDevice()?.let {
             showNotification(it, context)
         }
@@ -35,7 +39,8 @@ class NotificationWorker(
         bluetoothDevice: BluetoothDevice,
         context: Context?
     ) {
-        val deviceName: String = sharedPreferencesRepository.getRegisteredModel()?.model ?: bluetoothDevice.name
+        val deviceName: String =
+            sharedPreferencesRepository.getRegisteredModel()?.model ?: bluetoothDevice.name
         val batteryLevel = notificationUseCase.getBatteryLevel(bluetoothDevice)
         val batteryInMinutes = notificationUseCase.getBatteryTime(batteryLevel)
         val message = context?.getString(
