@@ -1,6 +1,5 @@
 package com.pefdneves.mydots.domain.usecase
 
-import android.app.Notification
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import com.pefdneves.mydots.R
@@ -10,13 +9,11 @@ import com.pefdneves.mydots.utils.BluetoothUtils
 import com.pefdneves.mydots.utils.BluetoothUtils.Companion.DEFAULT_BATTERY_NOT_CONNECT
 import com.pefdneves.mydots.utils.ImageUtils
 import com.pefdneves.mydots.utils.RxSchedulers
-import com.pefdneves.mydots.utils.notification.DotsNotificationManager
 import javax.inject.Inject
 
 class NotificationUseCaseImpl @Inject constructor(
     private val sharedPreferencesRepository: SharedPreferencesRepository,
     private val bluetoothUtils: BluetoothUtils,
-    private val notificationManager: DotsNotificationManager,
     schedulers: RxSchedulers
 ) :
     NotificationUseCase, BaseUseCase(schedulers) {
@@ -59,18 +56,6 @@ class NotificationUseCaseImpl @Inject constructor(
 
     override fun isNotificationEnabled(): Boolean {
         return sharedPreferencesRepository.isNotificationEnabled()
-    }
-
-    override fun getDefaultForegroundNotification(): Notification? {
-        return notificationManager.getDefaultForegroundNotification()
-    }
-
-    override fun getDefaultMissingPermissionsNotification(): Notification? {
-        return notificationManager.getDefaultMissingPermissionsNotification()
-    }
-
-    override fun cancelNotification() {
-        notificationManager.cancelNotification()
     }
 
     override fun getBluetoothDevice(): BluetoothDevice? {

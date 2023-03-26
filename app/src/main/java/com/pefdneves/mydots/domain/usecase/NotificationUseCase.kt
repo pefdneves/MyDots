@@ -1,6 +1,5 @@
 package com.pefdneves.mydots.domain.usecase
 
-import android.app.Notification
 import android.bluetooth.BluetoothDevice
 
 interface NotificationUseCase {
@@ -17,11 +16,5 @@ interface NotificationUseCase {
 
     fun isNotificationEnabled() : Boolean
 
-    fun getDefaultForegroundNotification(): Notification?
-
-    fun cancelNotification()
-
     fun getBluetoothDevice(): BluetoothDevice?
-
-    fun getDefaultMissingPermissionsNotification(): Notification?
 }

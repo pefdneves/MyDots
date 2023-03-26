@@ -1,6 +1,5 @@
 package com.pefdneves.mydots.inject
 
-import com.pefdneves.mydots.service.MyDotsService
 import com.pefdneves.mydots.view.activity.ChooseDeviceActivity
 import com.pefdneves.mydots.view.activity.OverviewActivity
 import com.pefdneves.mydots.view.activity.SplashActivity
@@ -18,8 +17,5 @@ abstract class BuildersModule {
 
     @ContributesAndroidInjector(modules = [ActivityModule::class])
     abstract fun bindChooseDeviceActivity(): ChooseDeviceActivity
-
-    @ContributesAndroidInjector(modules = [ServiceModule::class])
-    abstract fun contributeMyDotsService(): MyDotsService
 
 }

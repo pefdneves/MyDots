@@ -14,7 +14,7 @@ android {
         applicationId "com.pefdneves.mydots"
         minSdkVersion 27
         targetSdkVersion 33
-        versionCode 20
+        versionCode 21
         versionName "1.2"
 
         testInstrumentationRunner "com.pefdneves.mydots.TestApplicationRunner"

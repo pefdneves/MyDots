@@ -1,10 +1,11 @@
 package com.pefdneves.mydots.domain.usecase
 
-import com.pefdneves.mydots.domain.usecase.base.BaseUseCase
-import com.pefdneves.mydots.domain.usecase.base.UseCaseCallback
 import com.pefdneves.mydots.domain.repository.DotDeviceRepository
 import com.pefdneves.mydots.domain.repository.SharedPreferencesRepository
+import com.pefdneves.mydots.domain.usecase.base.BaseUseCase
+import com.pefdneves.mydots.domain.usecase.base.UseCaseCallback
 import com.pefdneves.mydots.model.DotBluetoothDevice
+import com.pefdneves.mydots.notification.NotificationScheduler
 import com.pefdneves.mydots.utils.RxSchedulers
 import com.pefdneves.mydots.utils.notification.DotsNotificationManager
 import io.reactivex.Observable
@@ -15,6 +16,7 @@ class OverviewUseCaseImpl @Inject constructor(
     private val dotDeviceRepository: DotDeviceRepository,
     private val sharedPreferencesRepository: SharedPreferencesRepository,
     private val dotsNotificationManager: DotsNotificationManager,
+    private val notificationScheduler: NotificationScheduler,
     schedulers: RxSchedulers
 ) :
     OverviewUseCase, BaseUseCase(schedulers) {
@@ -36,10 +38,13 @@ class OverviewUseCaseImpl @Inject constructor(
 
     override fun setNotificationEnabled(isEnabled: Boolean) {
         sharedPreferencesRepository.setNotificationEnabled(isEnabled)
-        if (!isEnabled)
+        if (!isEnabled) {
+            notificationScheduler.cancelNotification()
             dotsNotificationManager.stopNotificationService()
-        else
+        } else {
+            notificationScheduler.runPeriod()
             dotsNotificationManager.startNotificationService()
+        }
     }
 
     companion object {

@@ -2,27 +2,21 @@ package com.pefdneves.mydots.worker
 
 import android.content.Context
 import androidx.work.WorkerParameters
-import com.pefdneves.mydots.domain.repository.SharedPreferencesRepositoryImpl
-import com.pefdneves.mydots.domain.usecase.NotificationUseCaseImpl
-import com.pefdneves.mydots.utils.notification.DotsNotificationManagerImpl
+import com.pefdneves.mydots.notification.NotificationScheduler
 import io.mockk.mockk
 import org.junit.Before
 import org.junit.Test
 
 class NotificationWorkerFactoryTest {
 
-    private lateinit var mockNotificationManager: DotsNotificationManagerImpl
-    private lateinit var mockNotificationUseCaseImpl: NotificationUseCaseImpl
-    private lateinit var mockSharedPreferencesRepository: SharedPreferencesRepositoryImpl
+    private lateinit var mockNotificationScheduler: NotificationScheduler
     private lateinit var testSubject: NotificationWorkerFactory
 
     @Before
     fun setup() {
-        mockNotificationManager = mockk()
-        mockNotificationUseCaseImpl = mockk()
-        mockSharedPreferencesRepository = mockk()
+        mockNotificationScheduler = mockk()
         testSubject =
-            NotificationWorkerFactory(mockNotificationUseCaseImpl, mockNotificationManager, mockSharedPreferencesRepository)
+            NotificationWorkerFactory(mockNotificationScheduler)
     }
 
     @Test

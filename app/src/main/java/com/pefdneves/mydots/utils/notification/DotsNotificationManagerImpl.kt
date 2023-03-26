@@ -8,13 +8,22 @@ import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import androidx.work.*
 import com.pefdneves.mydots.R
-import com.pefdneves.mydots.service.MyDotsService
+import com.pefdneves.mydots.notification.PERIODIC_WORKER_ID
+import com.pefdneves.mydots.notification.WORKER_PERIOD_MINUTES
 import com.pefdneves.mydots.view.activity.SplashActivity
+import com.pefdneves.mydots.worker.NotificationWorker
+import java.time.Duration
 
-class DotsNotificationManagerImpl(private val context: Context) : DotsNotificationManager {
+class DotsNotificationManagerImpl(
+    private val context: Context
+) : DotsNotificationManager {
 
     private var notificationManager: NotificationManager? = null
+
+    private var workRequest: PeriodicWorkRequest? = null
+    private var workManager: WorkManager? = null
 
     init {
         createChannel()
@@ -82,11 +91,11 @@ class DotsNotificationManagerImpl(private val context: Context) : DotsNotificati
     }
 
     override fun startNotificationService() {
-        MyDotsService.startService(context)
+        scheduleWorker()
     }
 
     override fun stopNotificationService() {
-        MyDotsService.stopService(context)
+        workManager?.cancelAllWorkByTag(NotificationWorker::class.simpleName ?: "")
     }
 
     override fun getDefaultMissingPermissionsNotification(): Notification {
@@ -98,7 +107,26 @@ class DotsNotificationManagerImpl(private val context: Context) : DotsNotificati
     }
 
     override fun showPermissionsMissingNotification() {
-        notificationManager?.notify(DEFAULT_NOTIFICATION_ID, getDefaultMissingPermissionsNotification())
+        notificationManager?.notify(
+            DEFAULT_NOTIFICATION_ID,
+            getDefaultMissingPermissionsNotification()
+        )
+    }
+
+    private fun scheduleWorker() {
+        workRequest =
+            PeriodicWorkRequest.Builder(
+                NotificationWorker::class.java,
+                Duration.ofSeconds(WORKER_PERIOD_MINUTES)
+            )
+                .addTag(NotificationWorker::class.simpleName ?: "")
+                .build()
+        workRequest?.let {
+            workManager?.enqueueUniquePeriodicWork(
+                PERIODIC_WORKER_ID, ExistingPeriodicWorkPolicy.REPLACE,
+                it
+            )
+        }
     }
 
     companion object {

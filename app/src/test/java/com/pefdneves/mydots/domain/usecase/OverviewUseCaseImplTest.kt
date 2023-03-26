@@ -4,6 +4,7 @@ import com.pefdneves.mydots.domain.usecase.base.UseCaseCallback
 import com.pefdneves.mydots.domain.repository.DotDeviceRepositoryImpl
 import com.pefdneves.mydots.domain.repository.SharedPreferencesRepositoryImpl
 import com.pefdneves.mydots.model.DotBluetoothDevice
+import com.pefdneves.mydots.notification.NotificationScheduler
 import com.pefdneves.mydots.utils.RxSchedulers
 import com.pefdneves.mydots.utils.notification.DotsNotificationManagerImpl
 import io.mockk.*
@@ -19,6 +20,7 @@ class OverviewUseCaseImplTest {
 
     private lateinit var testSubject: OverviewUseCaseImpl
     private lateinit var mockDotDeviceRepositoryImpl: DotDeviceRepositoryImpl
+    private lateinit var mockNotificationScheduler: NotificationScheduler
     private lateinit var mockSharedPreferencesRepository: SharedPreferencesRepositoryImpl
     private lateinit var mockNotificationManager: DotsNotificationManagerImpl
     private val testScheduler = TestScheduler()
@@ -29,10 +31,12 @@ class OverviewUseCaseImplTest {
         mockDotDeviceRepositoryImpl = mockk()
         mockSharedPreferencesRepository = mockk()
         mockNotificationManager = mockk()
+        mockNotificationScheduler = mockk()
         testSubject = OverviewUseCaseImpl(
             mockDotDeviceRepositoryImpl,
             mockSharedPreferencesRepository,
             mockNotificationManager,
+            mockNotificationScheduler,
             RxSchedulers(testScheduler, testScheduler)
         )
     }
@@ -69,6 +73,7 @@ class OverviewUseCaseImplTest {
     fun test_setNotificationEnabled() {
         val notificationEnabled = true
         every { mockSharedPreferencesRepository.setNotificationEnabled(notificationEnabled) } just runs
+        every { mockNotificationScheduler.runPeriod() } just runs
         every { mockNotificationManager.startNotificationService() } just runs
 
         testSubject.setNotificationEnabled(notificationEnabled)

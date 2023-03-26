@@ -1,6 +1,5 @@
 package com.pefdneves.mydots.domain.usecase
 
-import android.app.Notification
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
 import com.pefdneves.mydots.R
@@ -9,9 +8,7 @@ import com.pefdneves.mydots.domain.repository.SharedPreferencesRepositoryImpl
 import com.pefdneves.mydots.model.XiaomiSpeakerModel
 import com.pefdneves.mydots.utils.BluetoothUtils.Companion.DEFAULT_BATTERY_NOT_CONNECT
 import com.pefdneves.mydots.utils.BluetoothUtilsImpl
-import com.pefdneves.mydots.utils.ImageUtils
 import com.pefdneves.mydots.utils.RxSchedulers
-import com.pefdneves.mydots.utils.notification.DotsNotificationManagerImpl
 import io.mockk.*
 import io.reactivex.schedulers.TestScheduler
 import junit.framework.TestCase.*
@@ -23,17 +20,15 @@ class NotificationUseCaseImplTest {
     private lateinit var testSubject: NotificationUseCaseImpl
     private lateinit var mockDotDeviceRepositoryImpl: DotDeviceRepositoryImpl
     private lateinit var mockBluetoothUtils: BluetoothUtilsImpl
-    private lateinit var mockNotificationManager: DotsNotificationManagerImpl
     private lateinit var mockSharedPreferencesRepositoryImpl: SharedPreferencesRepositoryImpl
 
     @Before
     fun setup() {
         mockBluetoothUtils = mockk()
         mockDotDeviceRepositoryImpl = mockk()
-        mockNotificationManager = mockk()
         mockSharedPreferencesRepositoryImpl = mockk()
         testSubject = NotificationUseCaseImpl(
-            mockSharedPreferencesRepositoryImpl, mockBluetoothUtils, mockNotificationManager,
+            mockSharedPreferencesRepositoryImpl, mockBluetoothUtils,
             RxSchedulers(TestScheduler(), TestScheduler())
         )
     }
@@ -240,43 +235,6 @@ class NotificationUseCaseImplTest {
         assert(value)
         verify(exactly = 1) {
             mockSharedPreferencesRepositoryImpl.isNotificationEnabled()
-        }
-    }
-
-    @Test
-    fun test_getDefaultForegroundNotification() {
-        val notification = mockk<Notification>()
-        every { mockNotificationManager.getDefaultForegroundNotification() } returns notification
-
-        val value = testSubject.getDefaultForegroundNotification()
-
-        assertSame(notification, value)
-        verify(exactly = 1) {
-            mockNotificationManager.getDefaultForegroundNotification()
-        }
-    }
-
-    @Test
-    fun test_getDefaultMissingPermissionsNotification() {
-        val notification = mockk<Notification>()
-        every { mockNotificationManager.getDefaultMissingPermissionsNotification() } returns notification
-
-        val value = testSubject.getDefaultMissingPermissionsNotification()
-
-        assertSame(notification, value)
-        verify(exactly = 1) {
-            mockNotificationManager.getDefaultMissingPermissionsNotification()
-        }
-    }
-
-    @Test
-    fun test_cancelNotification() {
-        every { mockNotificationManager.cancelNotification() } just runs
-
-        testSubject.cancelNotification()
-
-        verify(exactly = 1) {
-            mockNotificationManager.cancelNotification()
         }
     }
 

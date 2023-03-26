@@ -51,10 +51,6 @@
                 tools:node="remove" />
         </provider>
 
-        <service
-            android:name=".service.MyDotsService"
-            android:foregroundServiceType="connectedDevice" />
-
         <receiver
             android:name=".broadcastreceiver.MyDotsBroadcastReceiver"
             android:exported="true">
@@ -64,7 +60,6 @@
                 <action android:name="android.bluetooth.headset.profile.action.CONNECTION_STATE_CHANGED" />
                 <action android:name="android.bluetooth.device.action.ACL_CONNECTED" />
                 <action android:name="android.bluetooth.device.action.ACL_DISCONNECTED" />
-                <action android:name="com.pefdneves.mydots.ACTION_SERVICE_RESTART" />
             </intent-filter>
         </receiver>
 
